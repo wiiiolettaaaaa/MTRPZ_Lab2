@@ -69,8 +69,12 @@ class TestDoublyLinkedList(unittest.TestCase):
         self.lst.clear()
         self.assertEqual(self.lst.length(), 0)
 
-    def test_failing_example(self):
-        self.assertEqual(1, 2)
+    def test_out_of_range(self):
+        with self.assertRaises(IndexError):
+            self.lst.get(0)
+        self.lst.append('A')
+        with self.assertRaises(IndexError):
+            self.lst.get(2)
 
 
 if __name__ == '__main__':
