@@ -6,6 +6,7 @@ class TestDoublyLinkedList(unittest.TestCase):
     def setUp(self):
         self.lst = DoublyLinkedList()
 
+
     def test_append(self):
         self.lst.append('A')
         self.lst.append('B')
