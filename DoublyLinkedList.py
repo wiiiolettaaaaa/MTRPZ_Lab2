@@ -144,7 +144,7 @@ class DoublyLinkedList:
         self.head = self.tail = None
         self._length = 0
 
-    def extend(self, elements: "DoublyLinkedList") -> None:
+    def extend(self, elements: 'DoublyLinkedList') -> None:
         current = elements.head
         while current:
             self.append(current.value)
@@ -163,10 +163,18 @@ def demo_list_operations(lst):
     lst.delete(2)
     print("After deleting index 2:", [lst.get(i) for i in range(lst.length())])
 
-    lst.deleteAll('B')
-    print("After deleting all B:", [lst.get(i) for i in range(lst.length())])
+    lst.deleteAll('X')
+    print("After deleting all X:", [lst.get(i) for i in range(lst.length())])
 
-    print("Find first 'A':", lst.findFirst('A'))
+    print("\nTesting get() method:")
+    try:
+        print("Element at index 0:", lst.get(0))
+        print("Element at index 1:", lst.get(1))
+        print("Element at out-of-range index 10:", lst.get(10))
+    except IndexError as e:
+        print("Error:", e)
+
+    print("\nFind first 'A':", lst.findFirst('A'))
     print("Find last 'A':", lst.findLast('A'))
 
     cloned_list = lst.clone()
@@ -174,6 +182,19 @@ def demo_list_operations(lst):
 
     lst.reverse()
     print("Reversed list:", [lst.get(i) for i in range(lst.length())])
+
+    new_list = lst.clone()
+    new_list.append('Y')
+    new_list.append('Z')
+
+    print("New list before extending:", [new_list.get(i) for i in range(new_list.length())])
+
+    lst.extend(new_list)
+    print("After extending:", [lst.get(i) for i in range(lst.length())])
+
+    new_list.append('W')
+    print("After modifying new_list:", [new_list.get(i) for i in range(new_list.length())])
+    print("Original list after new_list modification:", [lst.get(i) for i in range(lst.length())])
 
     lst.clear()
     print("After clearing:", lst.length())
